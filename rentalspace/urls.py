@@ -16,8 +16,18 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from . import views
+from django.conf.urls import include
+from rest_framework import routers
+from rest_framework.authtoken.views import obtain_auth_token
+router = routers.DefaultRouter()
+router.register('users', views.UserViewSet)
+router.register('vans', views.VansModel, basename='VansModel')
+from .views import CustomObtainAuthToken
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('vans/', views.VansTable.as_view())
+    # path('vans/', views.VansTable.as_view()),
+    path('', include(router.urls)),
+    path('auth/', CustomObtainAuthToken.as_view())
 ]
