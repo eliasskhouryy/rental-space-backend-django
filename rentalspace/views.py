@@ -1,5 +1,4 @@
 from rentalspace import serialize
-from rentalspace import serialize
 from rentalspace.models import VansModel
 from rentalspace.serialize import VansSerializer
 from rest_framework.views import APIView
